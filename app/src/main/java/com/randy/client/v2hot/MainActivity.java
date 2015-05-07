@@ -2,32 +2,54 @@ package com.randy.client.v2hot;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.randy.client.v2hot.api.V2EXService;
+import com.alibaba.fastjson.JSON;
+import com.android.volley.VolleyError;
+import com.randy.client.v2hot.adapter.TopicAdapter;
+import com.randy.client.v2hot.api.V2EX;
 import com.randy.client.v2hot.model.Topic;
 
 import java.util.List;
 
-import retrofit.RestAdapter;
-
 
 public class MainActivity extends ActionBarActivity {
 
-    private List<Topic> topics;
+    private RecyclerView recyclerView;
+
+    private V2EX v2ex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RestAdapter adapter = new RestAdapter.Builder()
-            .setEndpoint("https://www.v2ex.com/api").build();
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
-        V2EXService service = adapter.create(V2EXService.class);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        topics = service.listTopics();
+        v2ex = new V2EX(this);
+
+        v2ex.getHotTopics(new V2EX.Listener() {
+            @Override
+            public void onResponse(String jsonString) {
+                recyclerView.setAdapter(new TopicAdapter(getApplicationContext(), JSON.parseArray(jsonString,Topic.class)));
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("errrrrr",error.getMessage());
+                Toast.makeText(getApplicationContext(),"网络出现问题",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 
     @Override

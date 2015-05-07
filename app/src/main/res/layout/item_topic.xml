@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="88dp">
+
+    <!--<com.makeramen.roundedimageview.RoundedImageView-->
+        <!--android:id="@+id/avatar"-->
+        <!--android:layout_width="16dp"-->
+        <!--android:layout_height="16dp"/>-->
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:background="#777777"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_alignTop="@+id/avatar"
+        android:textSize="16sp"
+        android:paddingRight="16dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginBottom="8dp"
+        tools:text="遇到这种一点代码都不会写，还要发帖问如何移除版权声明的人怎么办？"
+        android:singleLine="true"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/content"
+        android:layout_below="@+id/title"
+        android:textSize="14sp"
+        android:paddingRight="16dp"
+        android:layout_marginLeft="72dp"
+        tools:text="是还有一些人也移除了授权，但是平时都跟做贼似的，我也就当没看见，他们有问题我也尽力帮助。 https://v2ex.com/t/188481#reply5 这个是之前那个移除了版权标识的人，没太嚣张所以我也一直有帮他。 http://www.94cb.com/t/2537 但是今天发现了这么一个神奇的人。"
+        android:layout_width="match_parent" android:layout_height="35dp"/>
+
+</RelativeLayout>
