@@ -2,12 +2,15 @@ package com.randy.client.v2hot.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.randy.client.v2hot.R;
 import com.randy.client.v2hot.model.Topic;
 import com.squareup.picasso.Picasso;
@@ -25,12 +28,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView content;
-        ImageView avatar;
+        RoundedImageView avatar;
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.title);
             content = (TextView)itemView.findViewById(R.id.content);
-            avatar = (ImageView)itemView.findViewById(R.id.avatar);
+            avatar = (RoundedImageView)itemView.findViewById(R.id.avatar);
         }
     }
 
@@ -49,12 +52,18 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.title.setText(topics.get(position).getTitle());
         holder.content.setText(topics.get(position).getContent());
-        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? topics.get(position).getMember().getAvatar_normal() : "https://" + topics.get(position).getMember().getAvatar_normal()).into(holder.avatar);
+        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal()).into(holder.avatar);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_topic,parent,false);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"test",Toast.LENGTH_SHORT).show();
+            }
+        });
         return new ViewHolder(v);
     }
 }
