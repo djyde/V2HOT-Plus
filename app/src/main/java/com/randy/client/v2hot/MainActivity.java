@@ -9,20 +9,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.android.volley.VolleyError;
 import com.randy.client.v2hot.adapter.TopicAdapter;
-import com.randy.client.v2hot.api.V2EX;
+import com.randy.client.v2hot.api.V2EXService;
 import com.randy.client.v2hot.model.Topic;
 
 import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private RecyclerView recyclerView;
 
-    private V2EX v2ex;
+    private List<Topic> topics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +37,24 @@ public class MainActivity extends ActionBarActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        v2ex = new V2EX(this);
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("https://www.v2ex.com/api")
+                .build();
 
-        v2ex.getHotTopics(new V2EX.Listener() {
+        V2EXService service = restAdapter.create(V2EXService.class);
+
+        service.listTopics(new Callback<List<Topic>>() {
             @Override
-            public void onResponse(String jsonString) {
-                recyclerView.setAdapter(new TopicAdapter(getApplicationContext(), JSON.parseArray(jsonString,Topic.class)));
+            public void success(List<Topic> topics, Response response) {
+                recyclerView.setAdapter(new TopicAdapter(getApplicationContext(), topics));
             }
 
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("errrrrr",error.getMessage());
-                Toast.makeText(getApplicationContext(),"网络出现问题",Toast.LENGTH_SHORT).show();
+            public void failure(RetrofitError error) {
+                Log.e("failure",error.getMessage());
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 

@@ -49,7 +49,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.title.setText(topics.get(position).getTitle());
         holder.content.setText(topics.get(position).getContent());
-        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal()).into(holder.avatar);
+        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? topics.get(position).getMember().getAvatar_normal() : "https://" + topics.get(position).getMember().getAvatar_normal()).into(holder.avatar);
     }
 
     @Override

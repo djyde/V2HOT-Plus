@@ -11,7 +11,7 @@ public class Topic {
     private String content;
     private int replies;
     private Member member;
-    private Date created;
+    private int created;
 
     public String getContent() {
         return content;
@@ -21,11 +21,11 @@ public class Topic {
         this.content = content;
     }
 
-    public Date getCreated() {
+    public int getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(int created) {
         this.created = created;
     }
 
