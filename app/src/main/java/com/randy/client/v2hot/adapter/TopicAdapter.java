@@ -68,9 +68,9 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("viewtype",String.valueOf(viewType));
+                Log.e("viewtype", String.valueOf(viewType));
                 Intent intent = new Intent(context, ContentActivity.class);
-                intent.putExtra("topic_id",topics.get(viewType).getId());
+                intent.putExtra("topic_id",String.valueOf(topics.get(viewType).getId()));
                 intent.putExtra("username",topics.get(viewType).getMember().getUsername());
                 intent.putExtra("title",topics.get(viewType).getTitle());
                 intent.putExtra("content",topics.get(viewType).getContent());

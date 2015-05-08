@@ -57,7 +57,7 @@ public class ContentActivity extends ActionBarActivity {
         service.listReplies(topic_id, new Callback<List<Reply>>() {
             @Override
             public void success(List<Reply> replies, Response response) {
-                Log.e("replies",replies.toString());
+                Log.e("replies",topic_id);
                 Log.e("response",response.getUrl());
                 Member member = new Member();
                 member.setAvatar_large(avatar);
@@ -71,6 +71,7 @@ public class ContentActivity extends ActionBarActivity {
 
             @Override
             public void failure(RetrofitError error) {
+                Log.e("error",error.getUrl());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
