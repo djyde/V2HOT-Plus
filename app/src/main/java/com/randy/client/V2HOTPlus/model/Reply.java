@@ -1,4 +1,4 @@
-package com.randy.client.v2hot.model;
+package com.randy.client.V2HOTPlus.model;
 
 /**
  * Created by randy on 15/5/7.

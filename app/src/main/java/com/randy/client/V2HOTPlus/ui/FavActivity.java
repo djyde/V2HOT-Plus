@@ -1,17 +1,16 @@
-package com.randy.client.v2hot.ui;
+package com.randy.client.V2HOTPlus.ui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.adapter.FavAdapter;
-import com.randy.client.v2hot.data.Topic;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.adapter.FavAdapter;
+import com.randy.client.V2HOTPlus.data.Topic;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;

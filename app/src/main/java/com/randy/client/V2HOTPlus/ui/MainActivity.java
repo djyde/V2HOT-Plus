@@ -1,4 +1,4 @@
-package com.randy.client.v2hot.ui;
+package com.randy.client.V2HOTPlus.ui;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,10 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.adapter.TopicAdapter;
-import com.randy.client.v2hot.api.V2EXService;
-import com.randy.client.v2hot.model.Topic;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.adapter.TopicAdapter;
+import com.randy.client.V2HOTPlus.api.V2EXService;
+import com.randy.client.V2HOTPlus.model.Topic;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.randy.client.v2hot;
+package com.randy.client.V2HOTPlus;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

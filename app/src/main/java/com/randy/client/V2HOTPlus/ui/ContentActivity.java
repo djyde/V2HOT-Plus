@@ -1,4 +1,4 @@
-package com.randy.client.v2hot.ui;
+package com.randy.client.V2HOTPlus.ui;
 
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
@@ -7,21 +7,17 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.adapter.ReplyAdapter;
-import com.randy.client.v2hot.api.V2EXService;
-import com.randy.client.v2hot.data.V2EX;
-import com.randy.client.v2hot.model.Member;
-import com.randy.client.v2hot.model.Reply;
-import com.randy.client.v2hot.model.Topic;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.adapter.ReplyAdapter;
+import com.randy.client.V2HOTPlus.api.V2EXService;
+import com.randy.client.V2HOTPlus.model.Reply;
+import com.randy.client.V2HOTPlus.model.Topic;
 
 import java.util.List;
 

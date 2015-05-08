@@ -1,4 +1,4 @@
-package com.randy.client.v2hot.adapter;
+package com.randy.client.V2HOTPlus.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.data.Topic;
-import com.randy.client.v2hot.ui.ContentActivity;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.data.Topic;
+import com.randy.client.V2HOTPlus.ui.ContentActivity;
 
 import io.realm.RealmResults;
 

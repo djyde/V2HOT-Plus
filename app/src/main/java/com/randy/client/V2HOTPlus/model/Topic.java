@@ -1,6 +1,4 @@
-package com.randy.client.v2hot.model;
-
-import java.util.Date;
+package com.randy.client.V2HOTPlus.model;
 
 /**
  * Created by randy on 15/5/7.

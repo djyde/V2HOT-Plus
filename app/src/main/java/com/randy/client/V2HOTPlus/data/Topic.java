@@ -1,6 +1,4 @@
-package com.randy.client.v2hot.data;
-
-import com.randy.client.v2hot.model.Member;
+package com.randy.client.V2HOTPlus.data;
 
 import java.util.Date;
 

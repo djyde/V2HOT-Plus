@@ -1,7 +1,6 @@
-package com.randy.client.v2hot.data;
+package com.randy.client.V2HOTPlus.data;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.Date;
 
@@ -21,10 +20,10 @@ public class V2EX {
         void onCommit();
     }
 
-    public static void addTopicToFav(Context context, com.randy.client.v2hot.model.Topic topic, AddToTopicToFavListener listener){
+    public static void addTopicToFav(Context context, com.randy.client.V2HOTPlus.model.Topic topic, AddToTopicToFavListener listener){
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
-        com.randy.client.v2hot.data.Topic data_topic = realm.createObject(com.randy.client.v2hot.data.Topic.class);
+        com.randy.client.V2HOTPlus.data.Topic data_topic = realm.createObject(com.randy.client.V2HOTPlus.data.Topic.class);
         data_topic.setId(String.valueOf(topic.getId()));
         data_topic.setTitle(topic.getTitle());
         data_topic.setCreated_at(new Date());
@@ -32,7 +31,7 @@ public class V2EX {
         realm.commitTransaction();
     }
 
-    public static void removeTopicFromFav(Context context, com.randy.client.v2hot.model.Topic topic, RemoveTopicFromFavListener listener){
+    public static void removeTopicFromFav(Context context, com.randy.client.V2HOTPlus.model.Topic topic, RemoveTopicFromFavListener listener){
         Realm realm = Realm.getInstance(context);
         RealmQuery<Topic> query = realm.where(Topic.class);
 
@@ -43,7 +42,7 @@ public class V2EX {
         realm.commitTransaction();
     }
 
-    public static boolean isExistFav(Context context, com.randy.client.v2hot.model.Topic topic){
+    public static boolean isExistFav(Context context, com.randy.client.V2HOTPlus.model.Topic topic){
         Realm realm = Realm.getInstance(context);
         RealmQuery<Topic> query = realm.where(Topic.class);
 

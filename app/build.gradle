@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.randy.client.v2hot"
+        applicationId "com.randy.client.V2HOTPlus"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 1

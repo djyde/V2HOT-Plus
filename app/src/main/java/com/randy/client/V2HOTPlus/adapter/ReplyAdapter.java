@@ -1,11 +1,9 @@
-package com.randy.client.v2hot.adapter;
+package com.randy.client.V2HOTPlus.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.data.V2EX;
-import com.randy.client.v2hot.model.Reply;
-import com.randy.client.v2hot.model.Topic;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.data.V2EX;
+import com.randy.client.V2HOTPlus.model.Reply;
+import com.randy.client.V2HOTPlus.model.Topic;
 import com.squareup.picasso.Picasso;
 
-import java.util.Date;
 import java.util.List;
-
-import io.realm.Realm;
-import retrofit.http.HEAD;
 
 /**
  * Created by randy on 15/5/7.

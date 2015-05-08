@@ -1,20 +1,17 @@
-package com.randy.client.v2hot.adapter;
+package com.randy.client.V2HOTPlus.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.randy.client.v2hot.R;
-import com.randy.client.v2hot.model.Topic;
-import com.randy.client.v2hot.ui.ContentActivity;
+import com.randy.client.V2HOTPlus.R;
+import com.randy.client.V2HOTPlus.model.Topic;
+import com.randy.client.V2HOTPlus.ui.ContentActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -68,7 +65,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((TopicViewHolder)holder).content.setText(topics.get(position).getContent());
             Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal())
                     .placeholder(R.drawable.avatar)
-                    .into(((TopicViewHolder)holder).avatar);
+                    .into(((TopicViewHolder) holder).avatar);
         }
     }
 

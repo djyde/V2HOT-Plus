@@ -1,13 +1,12 @@
-package com.randy.client.v2hot.api;
+package com.randy.client.V2HOTPlus.api;
 
-import com.randy.client.v2hot.model.Reply;
-import com.randy.client.v2hot.model.Topic;
+import com.randy.client.V2HOTPlus.model.Reply;
+import com.randy.client.V2HOTPlus.model.Topic;
 
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.http.GET;
-import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
