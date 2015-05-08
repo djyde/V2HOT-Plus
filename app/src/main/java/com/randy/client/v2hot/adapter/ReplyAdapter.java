@@ -1,6 +1,7 @@
 package com.randy.client.v2hot.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -100,10 +101,16 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         } else if(holder instanceof HeaderViewHolder){
             ((HeaderViewHolder) holder).title.setText("评论");
         } else if (holder instanceof ReplyViewHolder){
-            Log.e("reply","true");
-            ((ReplyViewHolder) holder).username.setText(replies.get(position - 2).getMember().getUsername());
+            Log.e("reply", "true");
+            if (topic.getMember().getUsername().equals(replies.get(position - 2).getMember().getUsername())) {
+                ((ReplyViewHolder) holder).username.setText(replies.get(position - 2).getMember().getUsername() + "（楼主）");
+            } else {
+                ((ReplyViewHolder) holder).username.setText(replies.get(position - 2).getMember().getUsername());
+            }
             ((ReplyViewHolder) holder).content.setText(replies.get(position - 2).getContent());
-            Picasso.with(context).load(replies.get(position - 2).getMember().getAvatar_normal()).into(((ReplyViewHolder) holder).avatar);
+            Picasso.with(context).load(replies.get(position - 2).getMember().getAvatar_normal())
+                    .placeholder(R.drawable.avatar)
+                    .into(((ReplyViewHolder) holder).avatar);
         }
     }
 

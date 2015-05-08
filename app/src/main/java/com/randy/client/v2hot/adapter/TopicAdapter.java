@@ -59,7 +59,9 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.title.setText(topics.get(position).getTitle());
         holder.content.setText(topics.get(position).getContent());
-        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal()).into(holder.avatar);
+        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal())
+                .placeholder(R.drawable.avatar)
+                .into(holder.avatar);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             public void onClick(View v) {
                 Log.e("viewtype", String.valueOf(viewType));
                 Intent intent = new Intent(context, ContentActivity.class);
-                intent.putExtra("topic_id",String.valueOf(topics.get(viewType).getId()));
+                intent.putExtra("topic_id", String.valueOf(topics.get(viewType).getId()));
                 intent.putExtra("username",topics.get(viewType).getMember().getUsername());
                 intent.putExtra("title",topics.get(viewType).getTitle());
                 intent.putExtra("content",topics.get(viewType).getContent());

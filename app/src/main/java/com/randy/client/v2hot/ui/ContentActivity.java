@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.randy.client.v2hot.R;
@@ -38,6 +39,8 @@ public class ContentActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
 
+
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -46,6 +49,9 @@ public class ContentActivity extends ActionBarActivity {
         content = getIntent().getStringExtra("content");
         username = getIntent().getStringExtra("username");
         avatar = getIntent().getStringExtra("avatar");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(title);
 
 
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -97,6 +103,10 @@ public class ContentActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if(id == android.R.id.home) {
+            Log.e("press","home");
+            onBackPressed();
             return true;
         }
 
