@@ -10,7 +10,9 @@ import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.randy.client.v2hot.R;
@@ -31,6 +33,7 @@ import retrofit.client.Response;
 public class ContentActivity extends ActionBarActivity {
 
     private RecyclerView recyclerView;
+    private ProgressBar loading;
 
     private String topic_id;
 
@@ -47,6 +50,8 @@ public class ContentActivity extends ActionBarActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        loading = (ProgressBar)findViewById(R.id.loading);
 
         topic_id = getIntent().getStringExtra("topic_id");
 
@@ -67,6 +72,7 @@ public class ContentActivity extends ActionBarActivity {
                     @Override
                     public void success(List<Reply> replies, Response response) {
                         getSupportActionBar().setTitle("共 " + replies.size() + " 条评论");
+                        loading.setVisibility(View.GONE);
                         recyclerView.setAdapter(new ReplyAdapter(getApplicationContext(), replies, topics.get(0)));
                     }
 

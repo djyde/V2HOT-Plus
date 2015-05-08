@@ -48,9 +48,13 @@ public class MainActivity extends ActionBarActivity {
 
         service = restAdapter.create(V2EXService.class);
 
-
-        // begin request
-        swipeRefreshLayout.setRefreshing(true);
+        // http://stackoverflow.com/a/26910973/903502
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
         requestTopic();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
