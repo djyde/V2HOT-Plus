@@ -98,6 +98,9 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_fav:
                 startActivity(new Intent(this,FavActivity.class));
                 return true;
+            case R.id.action_about:
+                startActivity(new Intent(this,AboutActivity.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

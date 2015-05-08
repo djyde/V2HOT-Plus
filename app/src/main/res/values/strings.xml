@@ -8,4 +8,10 @@
     <string name="action_share">分享</string>
     <string name="action_clear">删除所有</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
+    <string name="title_activity_about">关于</string>
+
+    <string name="slogan">Do have faith in what you\'re doing.</string>
+    <string name="app_description">Made by Randy</string>
+
+    <string name="version">0.2.0</string>
 </resources>
