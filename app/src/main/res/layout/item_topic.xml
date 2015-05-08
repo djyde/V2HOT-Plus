@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:background="?android:attr/selectableItemBackground"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="1dp"
+                android:background="#ffffff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="100dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         app:riv_corner_radius="20dip"
         android:layout_width="40dp"
         android:layout_height="40dp"/>
@@ -28,7 +28,6 @@
         android:textSize="16sp"
         android:paddingRight="16dp"
         android:layout_marginLeft="72dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         tools:text="遇到这种一点代码都不会写，还要发帖问如何移除版权声明的人怎么办？"
         android:singleLine="true"
