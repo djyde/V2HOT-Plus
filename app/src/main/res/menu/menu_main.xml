@@ -6,8 +6,4 @@
     <item android:id="@+id/action_fav"
           android:title="收藏夹"
           app:showAsAction="never"/>
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
 </menu>

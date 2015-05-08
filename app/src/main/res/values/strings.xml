@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">v2hot</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_content">ContentActivity</string>
     <string name="title_activity_fav">FavActivity</string>
+    <string name="action_fav">加入收藏</string>
+    <string name="action_share">分享</string>
+    <string name="action_open_in_browser">在浏览器中打开</string>
 </resources>

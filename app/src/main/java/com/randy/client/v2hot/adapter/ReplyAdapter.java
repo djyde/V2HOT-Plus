@@ -131,7 +131,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         } else if(holder instanceof HeaderViewHolder){
             ((HeaderViewHolder) holder).title.setText("评论");
         } else if (holder instanceof ReplyViewHolder){
-            Log.e("reply", "true");
             if (topic.getMember().getUsername().equals(replies.get(position - 2).getMember().getUsername())) {
                 ((ReplyViewHolder) holder).username.setText(replies.get(position - 2).getMember().getUsername() + "（楼主）");
             } else {
@@ -149,8 +148,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         View card_view = LayoutInflater.from(context).inflate(R.layout.header_card,parent,false);
         View header_view = LayoutInflater.from(context).inflate(R.layout.header,parent,false);
         View reply_view = LayoutInflater.from(context).inflate(R.layout.item_reply,parent,false);
-
-        Log.e("size",String.valueOf(replies.size()));
 
         switch (viewType){
             case CARD:

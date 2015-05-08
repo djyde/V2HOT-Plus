@@ -65,8 +65,6 @@ public class ContentActivity extends ActionBarActivity {
         service.listReplies(topic_id, new Callback<List<Reply>>() {
             @Override
             public void success(List<Reply> replies, Response response) {
-                Log.e("replies", topic_id);
-                Log.e("response", response.getUrl());
                 Member member = new Member();
                 member.setAvatar_large(avatar);
                 member.setUsername(username);
@@ -81,7 +79,6 @@ public class ContentActivity extends ActionBarActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("error",error.getUrl());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -106,11 +103,11 @@ public class ContentActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if(id == android.R.id.home) {
-            Log.e("press","home");
+        if(id == android.R.id.home) {
             onBackPressed();
+            return true;
+        } else if(id == R.id.action_fav){
+            Toast.makeText(getApplicationContext(),topic_id,Toast.LENGTH_SHORT).show();
             return true;
         }
 

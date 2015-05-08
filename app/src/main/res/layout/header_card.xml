@@ -40,7 +40,6 @@
             android:layout_below="@id/title"
             tools:text="content"
             android:textSize="14sp"
-            android:autoLink="web"
             android:lineSpacingExtra="6dp"
             android:textColor="@color/secondaryText"
             android:layout_width="match_parent" android:layout_height="wrap_content"/>
@@ -48,11 +47,11 @@
             android:id="@+id/open"
             android:textSize="16sp"
             android:layout_below="@+id/content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/colorPrimary"
-            android:text="在浏览器中打开"
+            android:text="@string/action_open_in_browser"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 
@@ -60,20 +59,20 @@
             android:id="@+id/share"
             android:layout_below="@+id/content"
             android:textSize="16sp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/colorPrimary"
             android:layout_toRightOf="@+id/open"
-            android:text="分享"
+            android:text="@string/action_share"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/fav"
             android:layout_below="@id/content"
             android:layout_toRightOf="@id/share"
-            android:text="加入收藏"
-            android:layout_marginTop="8dp"
+            android:text="@string/action_fav"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="16sp"

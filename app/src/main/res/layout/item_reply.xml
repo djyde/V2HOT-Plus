@@ -35,7 +35,6 @@
 
         android:layout_below="@+id/username"
         android:textSize="14sp"
-        android:autoLink="web"
         android:textColor="#8A000000"
         android:layout_marginBottom="16dp"
         android:lineSpacingExtra="6dp"
