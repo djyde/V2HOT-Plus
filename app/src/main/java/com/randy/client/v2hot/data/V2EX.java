@@ -25,7 +25,7 @@ public class V2EX {
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
         com.randy.client.v2hot.data.Topic data_topic = realm.createObject(com.randy.client.v2hot.data.Topic.class);
-        data_topic.setId(String.valueOf(topic.getId()));
+        data_topic.setId("/t/" + String.valueOf(topic.getId()));
         data_topic.setTitle(topic.getTitle());
         data_topic.setCreated_at(new Date());
         listener.onCommit();

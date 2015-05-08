@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.randy.client.v2hot.R;
 import com.randy.client.v2hot.adapter.FavAdapter;
@@ -19,6 +21,8 @@ public class FavActivity extends ActionBarActivity {
 
 
     private RecyclerView recyclerView;
+    private TextView message;
+
     private Realm realm;
     private RealmResults<Topic> topics;
 
@@ -31,6 +35,7 @@ public class FavActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        message = (TextView)findViewById(R.id.message);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        Realm.deleteRealmFile(this);
@@ -41,6 +46,8 @@ public class FavActivity extends ActionBarActivity {
 
         topics = query.findAll();
         topics.sort("created_at",RealmResults.SORT_ORDER_DESCENDING);
+
+        if(topics.size() == 0) message.setVisibility(View.VISIBLE);
 
         favAdapter = new FavAdapter(this,topics);
         recyclerView.setAdapter(favAdapter);
