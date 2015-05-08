@@ -1,7 +1,9 @@
 package com.randy.client.v2hot.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,12 +46,16 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView title;
         TextView content;
         TextView username;
+        TextView open;
+        TextView share;
         ImageView avatar;
         public CardViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.title);
             username = (TextView)itemView.findViewById(R.id.username);
             content = (TextView)itemView.findViewById(R.id.content);
+            open = (TextView)itemView.findViewById(R.id.open);
+            share = (TextView)itemView.findViewById(R.id.share);
             avatar = (ImageView)itemView.findViewById(R.id.avatar);
         }
     }
@@ -97,6 +103,12 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((CardViewHolder) holder).title.setText(topic.getTitle());
             ((CardViewHolder) holder).username.setText(topic.getMember().getUsername());
             ((CardViewHolder) holder).content.setText(topic.getContent());
+            ((CardViewHolder) holder).open.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(topic.getUrl())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
+            });
             Picasso.with(context).load(topic.getMember().getAvatar_large()).into(((CardViewHolder) holder).avatar);
         } else if(holder instanceof HeaderViewHolder){
             ((HeaderViewHolder) holder).title.setText("评论");

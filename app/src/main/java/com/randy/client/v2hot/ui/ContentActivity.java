@@ -33,6 +33,7 @@ public class ContentActivity extends ActionBarActivity {
     private String content;
     private String avatar;
     private String username;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class ContentActivity extends ActionBarActivity {
         content = getIntent().getStringExtra("content");
         username = getIntent().getStringExtra("username");
         avatar = getIntent().getStringExtra("avatar");
+        url = getIntent().getStringExtra("url");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
@@ -72,6 +74,7 @@ public class ContentActivity extends ActionBarActivity {
                 topic.setTitle(title);
                 topic.setContent(content);
                 topic.setMember(member);
+                topic.setUrl(url);
                 recyclerView.setAdapter(new ReplyAdapter(getApplicationContext(), replies, topic));
             }
 

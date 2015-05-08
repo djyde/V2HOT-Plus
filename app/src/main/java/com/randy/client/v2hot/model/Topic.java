@@ -8,10 +8,19 @@ import java.util.Date;
 public class Topic {
     private int id;
     private String title;
+    private String url;
     private String content;
     private int replies;
     private Member member;
     private int created;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getContent() {
         return content;
