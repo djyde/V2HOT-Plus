@@ -2,4 +2,7 @@
 <resources>
     <color name="primaryText">#000000</color>
     <color name="secondaryText">#8A000000</color>
+
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
 </resources>
