@@ -1,4 +1,4 @@
-package com.randy.client.v2hot;
+package com.randy.client.v2hot.ui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.randy.client.v2hot.R;
 import com.randy.client.v2hot.adapter.TopicAdapter;
 import com.randy.client.v2hot.api.V2EXService;
 import com.randy.client.v2hot.model.Topic;

@@ -11,7 +11,7 @@ public class Member {
     private String avatar_large;
 
     public String getAvatar_large() {
-        return avatar_large;
+        return avatar_large.charAt(0) == '/' ? "https:" + avatar_large : avatar_large;
     }
 
     public void setAvatar_large(String avatar_large) {
@@ -19,7 +19,7 @@ public class Member {
     }
 
     public String getAvatar_mini() {
-        return avatar_mini;
+        return avatar_mini.charAt(0) == '/' ? "https:" + avatar_mini : avatar_mini;
     }
 
     public void setAvatar_mini(String avatar_mini) {
@@ -27,7 +27,7 @@ public class Member {
     }
 
     public String getAvatar_normal() {
-        return avatar_normal;
+        return avatar_normal.charAt(0) == '/' ? "https:" + avatar_normal : avatar_normal;
     }
 
     public void setAvatar_normal(String avatar_normal) {

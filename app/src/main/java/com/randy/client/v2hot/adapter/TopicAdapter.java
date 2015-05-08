@@ -1,6 +1,7 @@
 package com.randy.client.v2hot.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.randy.client.v2hot.R;
 import com.randy.client.v2hot.model.Topic;
+import com.randy.client.v2hot.ui.ContentActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -44,6 +46,11 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public int getItemCount() {
         return topics.size();
     }
@@ -61,7 +68,15 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"test",Toast.LENGTH_SHORT).show();
+                Log.e("viewtype",String.valueOf(viewType));
+                Intent intent = new Intent(context, ContentActivity.class);
+                intent.putExtra("topic_id",topics.get(viewType).getId());
+                intent.putExtra("username",topics.get(viewType).getMember().getUsername());
+                intent.putExtra("title",topics.get(viewType).getTitle());
+                intent.putExtra("content",topics.get(viewType).getContent());
+                intent.putExtra("avatar",topics.get(viewType).getMember().getAvatar_large());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
         return new ViewHolder(v);
