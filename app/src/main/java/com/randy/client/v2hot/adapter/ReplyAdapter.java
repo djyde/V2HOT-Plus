@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.randy.client.v2hot.R;
+import com.randy.client.v2hot.data.V2EX;
 import com.randy.client.v2hot.model.Reply;
 import com.randy.client.v2hot.model.Topic;
 import com.squareup.picasso.Picasso;
@@ -103,24 +104,39 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof CardViewHolder){
             ((CardViewHolder) holder).title.setText(topic.getTitle());
             ((CardViewHolder) holder).username.setText(topic.getMember().getUsername());
             ((CardViewHolder) holder).content.setText(topic.getContent());
+
             ((CardViewHolder) holder).fav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Realm realm = Realm.getInstance(context);
-                    realm.beginTransaction();
-                    com.randy.client.v2hot.data.Topic data_topic = realm.createObject(com.randy.client.v2hot.data.Topic.class);
-                    data_topic.setId(String.valueOf(topic.getId()));
-                    data_topic.setTitle(topic.getTitle());
-                    data_topic.setCreated_at(new Date());
-                    Toast.makeText(context,"收藏成功",Toast.LENGTH_SHORT).show();
-                    realm.commitTransaction();
+                    if (V2EX.isExistFav(context, topic)) {
+                        V2EX.removeTopicFromFav(context, topic, new V2EX.RemoveTopicFromFavListener() {
+                            @Override
+                            public void onCommit() {
+                                Toast.makeText(context,"取消收藏成功",Toast.LENGTH_SHORT).show();
+                                ((CardViewHolder) holder).fav.setText("加入收藏");
+                            }
+                        });
+                    } else {
+                        V2EX.addTopicToFav(context, topic, new V2EX.AddToTopicToFavListener() {
+                            @Override
+                            public void onCommit() {
+                                Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
+                                ((CardViewHolder) holder).fav.setText("取消收藏");
+                            }
+                        });
+                    }
                 }
             });
+
+            if(V2EX.isExistFav(context,topic)){
+                ((CardViewHolder) holder).fav.setText("取消收藏");
+            }
+
             ((CardViewHolder) holder).open.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -145,7 +161,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View card_view = LayoutInflater.from(context).inflate(R.layout.header_card,parent,false);
+        View card_view = LayoutInflater.from(context).inflate(R.layout.header_card, parent, false);
         View header_view = LayoutInflater.from(context).inflate(R.layout.header,parent,false);
         View reply_view = LayoutInflater.from(context).inflate(R.layout.item_reply,parent,false);
 

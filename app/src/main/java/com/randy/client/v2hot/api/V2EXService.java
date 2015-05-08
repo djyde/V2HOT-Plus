@@ -18,6 +18,9 @@ public interface V2EXService {
     @GET("/topics/hot.json")
     void listTopics(Callback<List<Topic>> callback);
 
+    @GET("/topics/show.json")
+    void getTopicInfo(@Query("id") String topic_id, Callback<List<Topic>> callback);
+
     @GET("/replies/show.json")
     void listReplies(@Query("topic_id") String topic_id, Callback<List<Reply>> callback);
 }

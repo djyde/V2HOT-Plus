@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">v2hot</string>
 
-    <string name="title_activity_content">ContentActivity</string>
-    <string name="title_activity_fav">FavActivity</string>
+    <string name="title_activity_content">主题</string>
+    <string name="title_activity_fav">收藏</string>
+
     <string name="action_fav">加入收藏</string>
     <string name="action_share">分享</string>
+    <string name="action_clear">删除所有</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
 </resources>

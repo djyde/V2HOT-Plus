@@ -20,14 +20,15 @@ public class FavActivity extends ActionBarActivity {
 
     private RecyclerView recyclerView;
     private Realm realm;
+    private RealmResults<Topic> topics;
 
+    private FavAdapter favAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("收藏");
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
@@ -38,18 +39,28 @@ public class FavActivity extends ActionBarActivity {
 
         RealmQuery<Topic> query = realm.where(Topic.class);
 
-        RealmResults<Topic> topics = query.findAll();
+        topics = query.findAll();
         topics.sort("created_at",RealmResults.SORT_ORDER_DESCENDING);
 
-        recyclerView.setAdapter(new FavAdapter(this,topics));
+        favAdapter = new FavAdapter(this,topics);
+        recyclerView.setAdapter(favAdapter);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home){
             onBackPressed();
+            return true;
+        } else if(item.getItemId() == R.id.clear){
+            realm.beginTransaction();
+            RealmQuery<Topic> query = realm.where(Topic.class);
+            query.findAll().clear();
+            topics = query.findAll();
+            favAdapter.notifyDataSetChanged();
+            realm.commitTransaction();
             return true;
         }
 
