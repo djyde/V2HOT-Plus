@@ -1,5 +1,6 @@
 package com.randy.client.v2hot.ui;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -74,8 +75,10 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_fav:
+                startActivity(new Intent(this,FavActivity.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

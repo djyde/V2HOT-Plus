@@ -22,6 +22,10 @@
             android:name=".ui.ContentActivity"
             android:label="@string/title_activity_content" >
         </activity>
+        <activity
+            android:name=".ui.FavActivity"
+            android:label="@string/title_activity_fav" >
+        </activity>
     </application>
 
 </manifest>

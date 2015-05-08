@@ -32,10 +32,13 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/content"
+
         android:layout_below="@+id/username"
         android:textSize="14sp"
+        android:autoLink="web"
         android:textColor="#8A000000"
         android:layout_marginBottom="16dp"
+        android:lineSpacingExtra="6dp"
         android:paddingRight="16dp"
         android:layout_marginLeft="72dp"
         tools:text="是还有一些人也移除了授权，但是平时都跟做贼似的，我也就当没看见，他们有问题我也尽力帮助。 https://v2ex.com/t/188481#reply5 这个是之前那个移除了版权标识的人，没太嚣张所以我也一直有帮他。 http://www.94cb.com/t/2537 但是今天发现了这么一个神奇的人。"

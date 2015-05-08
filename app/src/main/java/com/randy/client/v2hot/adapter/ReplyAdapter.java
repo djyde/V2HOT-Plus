@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.randy.client.v2hot.R;
@@ -18,8 +19,10 @@ import com.randy.client.v2hot.model.Reply;
 import com.randy.client.v2hot.model.Topic;
 import com.squareup.picasso.Picasso;
 
+import java.util.Date;
 import java.util.List;
 
+import io.realm.Realm;
 import retrofit.http.HEAD;
 
 /**
@@ -48,6 +51,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView username;
         TextView open;
         TextView share;
+        TextView fav;
         ImageView avatar;
         public CardViewHolder(View itemView) {
             super(itemView);
@@ -56,6 +60,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             content = (TextView)itemView.findViewById(R.id.content);
             open = (TextView)itemView.findViewById(R.id.open);
             share = (TextView)itemView.findViewById(R.id.share);
+            fav = (TextView)itemView.findViewById(R.id.fav);
             avatar = (ImageView)itemView.findViewById(R.id.avatar);
         }
     }
@@ -103,6 +108,19 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((CardViewHolder) holder).title.setText(topic.getTitle());
             ((CardViewHolder) holder).username.setText(topic.getMember().getUsername());
             ((CardViewHolder) holder).content.setText(topic.getContent());
+            ((CardViewHolder) holder).fav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Realm realm = Realm.getInstance(context);
+                    realm.beginTransaction();
+                    com.randy.client.v2hot.data.Topic data_topic = realm.createObject(com.randy.client.v2hot.data.Topic.class);
+                    data_topic.setId(String.valueOf(topic.getId()));
+                    data_topic.setTitle(topic.getTitle());
+                    data_topic.setCreated_at(new Date());
+                    Toast.makeText(context,"收藏成功",Toast.LENGTH_SHORT).show();
+                    realm.commitTransaction();
+                }
+            });
             ((CardViewHolder) holder).open.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -40,6 +40,8 @@
             android:layout_below="@id/title"
             tools:text="content"
             android:textSize="14sp"
+            android:autoLink="web"
+            android:lineSpacingExtra="6dp"
             android:textColor="@color/secondaryText"
             android:layout_width="match_parent" android:layout_height="wrap_content"/>
         <TextView
@@ -64,6 +66,18 @@
             android:textColor="@color/colorPrimary"
             android:layout_toRightOf="@+id/open"
             android:text="分享"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/fav"
+            android:layout_below="@id/content"
+            android:layout_toRightOf="@id/share"
+            android:text="加入收藏"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </RelativeLayout>
 

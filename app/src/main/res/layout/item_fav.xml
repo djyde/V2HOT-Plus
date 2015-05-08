@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:padding="16dp"
+              android:background="#ffffff"
+              android:layout_marginTop="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title"
+        android:textSize="18sp"
+        android:textColor="@color/primaryText"
+        android:singleLine="true"
+        android:layout_marginBottom="8dp"
+        tools:text="面试技术岗位, 和 HR 谈薪资的时候需要上一家公司的薪资证明, 大家怎么看待?"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/id"
+        android:textSize="14sp"
+        tools:text="t/102422"
+        android:textColor="@color/secondaryText"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+</LinearLayout>

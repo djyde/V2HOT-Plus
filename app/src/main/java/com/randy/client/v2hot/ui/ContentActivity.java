@@ -65,12 +65,13 @@ public class ContentActivity extends ActionBarActivity {
         service.listReplies(topic_id, new Callback<List<Reply>>() {
             @Override
             public void success(List<Reply> replies, Response response) {
-                Log.e("replies",topic_id);
-                Log.e("response",response.getUrl());
+                Log.e("replies", topic_id);
+                Log.e("response", response.getUrl());
                 Member member = new Member();
                 member.setAvatar_large(avatar);
                 member.setUsername(username);
                 Topic topic = new Topic();
+                topic.setId(Integer.valueOf(topic_id));
                 topic.setTitle(title);
                 topic.setContent(content);
                 topic.setMember(member);
