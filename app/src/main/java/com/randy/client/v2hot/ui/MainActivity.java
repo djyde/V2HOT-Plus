@@ -1,6 +1,7 @@
 package com.randy.client.v2hot.ui;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,16 +27,18 @@ import retrofit.client.Response;
 public class MainActivity extends ActionBarActivity {
 
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
-    private List<Topic> topics;
 
-
+    private V2EXService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -43,37 +46,50 @@ public class MainActivity extends ActionBarActivity {
                 .setEndpoint("https://www.v2ex.com/api")
                 .build();
 
-        V2EXService service = restAdapter.create(V2EXService.class);
+        service = restAdapter.create(V2EXService.class);
 
-        service.listTopics(new Callback<List<Topic>>() {
-            @Override
-            public void success(List<Topic> topics, Response response) {
-                recyclerView.setAdapter(new TopicAdapter(getApplicationContext(), topics));
-            }
 
+        // begin request
+        swipeRefreshLayout.setRefreshing(true);
+        requestTopic();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+            public void onRefresh() {
+                requestTopic();
             }
         });
 
     }
 
+    private void requestTopic() {
+        service.listTopics(new Callback<List<Topic>>() {
+            @Override
+            public void success(List<Topic> topics, Response response) {
+                recyclerView.setAdapter(new TopicAdapter(getApplicationContext(),topics));
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplicationContext(), "网络出现问题", Toast.LENGTH_SHORT).show();
+                Log.e("v2hot_topic_request", error.getMessage());
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_fav:
                 startActivity(new Intent(this,FavActivity.class));
