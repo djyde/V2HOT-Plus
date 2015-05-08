@@ -22,20 +22,26 @@ import java.util.List;
 /**
  * Created by randy on 15/5/7.
  */
-public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> {
+public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Topic> topics;
     private Context context;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class TopicViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView content;
         RoundedImageView avatar;
-        public ViewHolder(View itemView) {
+        public TopicViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.title);
             content = (TextView)itemView.findViewById(R.id.content);
             avatar = (RoundedImageView)itemView.findViewById(R.id.avatar);
+        }
+    }
+
+    public class SloganViewHolder extends RecyclerView.ViewHolder{
+        public SloganViewHolder(View itemView) {
+            super(itemView);
         }
     }
 
@@ -52,35 +58,43 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return topics.size();
+        return topics.size() + 1;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(topics.get(position).getTitle());
-        holder.content.setText(topics.get(position).getContent());
-        Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal())
-                .placeholder(R.drawable.avatar)
-                .into(holder.avatar);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof TopicViewHolder){
+            ((TopicViewHolder)holder).title.setText(topics.get(position).getTitle());
+            ((TopicViewHolder)holder).content.setText(topics.get(position).getContent());
+            Picasso.with(context).load(topics.get(position).getMember().getAvatar_normal().charAt(0) == '/' ? "https:" + topics.get(position).getMember().getAvatar_normal() : topics.get(position).getMember().getAvatar_normal())
+                    .placeholder(R.drawable.avatar)
+                    .into(((TopicViewHolder)holder).avatar);
+        }
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_topic,parent,false);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ContentActivity.class);
-                intent.putExtra("url",topics.get(viewType).getUrl());
-                intent.putExtra("topic_id", String.valueOf(topics.get(viewType).getId()));
-                intent.putExtra("username",topics.get(viewType).getMember().getUsername());
-                intent.putExtra("title",topics.get(viewType).getTitle());
-                intent.putExtra("content",topics.get(viewType).getContent());
-                intent.putExtra("avatar",topics.get(viewType).getMember().getAvatar_large());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
-        return new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+        View topic_view = LayoutInflater.from(context).inflate(R.layout.item_topic,parent,false);
+        View slogan_view = LayoutInflater.from(context).inflate(R.layout.item_slogan,parent,false);
+
+        if(viewType == topics.size()){
+            return new SloganViewHolder(slogan_view);
+        } else {
+            topic_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ContentActivity.class);
+                    intent.putExtra("url",topics.get(viewType).getUrl());
+                    intent.putExtra("topic_id", String.valueOf(topics.get(viewType).getId()));
+                    intent.putExtra("username",topics.get(viewType).getMember().getUsername());
+                    intent.putExtra("title",topics.get(viewType).getTitle());
+                    intent.putExtra("content",topics.get(viewType).getContent());
+                    intent.putExtra("avatar",topics.get(viewType).getMember().getAvatar_large());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
+            return new TopicViewHolder(topic_view);
+        }
     }
 }

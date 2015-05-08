@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">v2hot</string>
+    <string name="app_name">V2HOT Plus</string>
 
     <string name="title_activity_content">主题</string>
     <string name="title_activity_fav">收藏</string>
@@ -13,5 +13,5 @@
     <string name="slogan">Do have faith in what you\'re doing.</string>
     <string name="app_description">Made by Randy</string>
 
-    <string name="version">0.2.0</string>
+    <string name="version">0.1.0</string>
 </resources>
