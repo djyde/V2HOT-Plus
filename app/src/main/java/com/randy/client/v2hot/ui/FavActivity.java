@@ -54,14 +54,6 @@ public class FavActivity extends ActionBarActivity {
         if (item.getItemId() == android.R.id.home){
             onBackPressed();
             return true;
-        } else if(item.getItemId() == R.id.clear){
-            realm.beginTransaction();
-            RealmQuery<Topic> query = realm.where(Topic.class);
-            query.findAll().clear();
-            topics = query.findAll();
-            favAdapter.notifyDataSetChanged();
-            realm.commitTransaction();
-            return true;
         }
 
         return super.onOptionsItemSelected(item);

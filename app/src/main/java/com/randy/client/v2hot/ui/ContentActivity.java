@@ -1,9 +1,12 @@
 package com.randy.client.v2hot.ui;
 
+import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +36,8 @@ public class ContentActivity extends ActionBarActivity {
 
     private V2EXService service;
 
+    private ShareActionProvider shareActionProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +58,15 @@ public class ContentActivity extends ActionBarActivity {
         service.getTopicInfo(topic_id, new Callback<List<Topic>>() {
             @Override
             public void success(final List<Topic> topics, Response response) {
-                getSupportActionBar().setTitle(topics.get(0).getTitle());
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, topics.get(0).getTitle() + " " + topics.get(0).getUrl() + " shared from V2HOT");
+                shareIntent.setType("text/plain");
+                shareActionProvider.setShareIntent(shareIntent);
                 service.listReplies(topic_id, new Callback<List<Reply>>() {
                     @Override
                     public void success(List<Reply> replies, Response response) {
+                        getSupportActionBar().setTitle("共 " + replies.size() + " 条评论");
                         recyclerView.setAdapter(new ReplyAdapter(getApplicationContext(), replies, topics.get(0)));
                     }
 
@@ -73,23 +83,17 @@ public class ContentActivity extends ActionBarActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_content, menu);
+
+        MenuItem item = menu.findItem(R.id.action_share);
+
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
         return true;
     }
 
@@ -103,25 +107,6 @@ public class ContentActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if(id == android.R.id.home) {
             onBackPressed();
-            return true;
-        } else if(id == R.id.action_fav){
-
-            service.getTopicInfo(topic_id, new Callback<List<Topic>>() {
-                @Override
-                public void success(List<Topic> topics, Response response) {
-                    V2EX.addTopicToFav(getApplicationContext(), topics.get(0), new V2EX.AddToTopicToFavListener() {
-                        @Override
-                        public void onCommit() {
-                            Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    //TODO 错误处理
-                }
-            });
             return true;
         }
 

@@ -51,7 +51,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView content;
         TextView username;
         TextView open;
-        TextView share;
         TextView fav;
         ImageView avatar;
         public CardViewHolder(View itemView) {
@@ -60,7 +59,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             username = (TextView)itemView.findViewById(R.id.username);
             content = (TextView)itemView.findViewById(R.id.content);
             open = (TextView)itemView.findViewById(R.id.open);
-            share = (TextView)itemView.findViewById(R.id.share);
             fav = (TextView)itemView.findViewById(R.id.fav);
             avatar = (ImageView)itemView.findViewById(R.id.avatar);
         }
